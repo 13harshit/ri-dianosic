@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
  * @returns ref to attach to element and isVisible boolean
  */
 export function useScrollAnimation(threshold: number = 0.1, rootMargin: string = '0px') {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<any>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [hasAnimated, setHasAnimated] = useState(false)
 
@@ -47,7 +47,7 @@ export function useScrollAnimation(threshold: number = 0.1, rootMargin: string =
  * @returns ref to attach to element and isVisible boolean
  */
 export function useScrollAnimationRepeat(threshold: number = 0.1, rootMargin: string = '0px') {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<any>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -163,7 +163,7 @@ export function useTypewriter(text: string, speed: number = 50, delay: number = 
  * @returns ref to attach to element and transform style
  */
 export function useParallax(speed: number = 0.5) {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<any>(null)
   const [transform, setTransform] = useState('')
 
   useEffect(() => {
@@ -230,7 +230,7 @@ export function useMultiPhaseAnimation(options: {
   threshold?: number
 }) {
   const { phases, phaseDelay = 500, threshold = 0.1 } = options
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<any>(null)
   const [currentPhase, setCurrentPhase] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
 

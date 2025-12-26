@@ -14,6 +14,8 @@ import {
   useScrollAnimationRepeat,
   useStaggeredAnimation
 } from '@/hooks/use-animations'
+import { blogPosts } from '@/lib/blog-data'
+import Link from 'next/link'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home')
@@ -138,32 +140,7 @@ export default function Home() {
     },
   ]
 
-  const blogPosts = [
-    {
-      title: 'The Importance of Regular Health Checkups',
-      excerpt: 'Discover why preventive health screenings are crucial for maintaining optimal health and detecting potential issues early.',
-      date: 'Dec 15, 2024',
-      readTime: '5 min read',
-      category: 'Health Tips',
-      image: '/images/blog-header.png'
-    },
-    {
-      title: 'Understanding Your Blood Test Results',
-      excerpt: 'A comprehensive guide to interpreting common blood test parameters and what they mean for your health.',
-      date: 'Dec 10, 2024',
-      readTime: '7 min read',
-      category: 'Education',
-      image: '/images/service-lab.png'
-    },
-    {
-      title: 'Advancements in Medical Imaging Technology',
-      excerpt: 'Learn about the latest innovations in diagnostic imaging and how they improve accuracy and patient comfort.',
-      date: 'Dec 5, 2024',
-      readTime: '6 min read',
-      category: 'Technology',
-      image: '/images/service-imaging.png'
-    },
-  ]
+
 
   const stats = [
     { icon: <Users />, label: 'Happy Patients', value: '50,000+' },
@@ -202,21 +179,19 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       {/* Navigation Header */}
       <header
         ref={heroBadge.ref}
-        className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-500 ${
-          heroBadge.isVisible ? 'animate-fade-in-down' : ''
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-500 ${heroBadge.isVisible ? 'animate-fade-in-down' : ''
+          }`}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Animated Logo */}
             <div
-              className={`flex items-center space-x-2 group cursor-pointer transition-all duration-300 ${
-                heroBadge.isVisible ? 'animate-scale-in delay-100' : 'opacity-0'
-              }`}
+              className={`flex items-center space-x-2 group cursor-pointer transition-all duration-300 ${heroBadge.isVisible ? 'animate-scale-in delay-100' : 'opacity-0'
+                }`}
               onClick={() => scrollToSection('home')}
             >
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:animate-heartbeat shadow-lg group-hover:shadow-xl">
@@ -233,11 +208,10 @@ export default function Home() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 overflow-hidden ${
-                    activeSection === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
-                  } ${heroBadge.isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'}`}
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 overflow-hidden ${activeSection === item.id
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
+                    } ${heroBadge.isVisible ? `animate-fade-in-up stagger-${index + 1}` : 'opacity-0'}`}
                 >
                   {activeSection === item.id && (
                     <span className="absolute inset-0 bg-primary animate-pulse" />
@@ -250,9 +224,8 @@ export default function Home() {
             {/* Animated Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`md:hidden p-2 rounded-lg hover:bg-secondary transition-all duration-300 ${
-                heroBadge.isVisible ? 'animate-fade-in' : 'opacity-0'
-              }`}
+              className={`md:hidden p-2 rounded-lg hover:bg-secondary transition-all duration-300 ${heroBadge.isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
@@ -266,20 +239,18 @@ export default function Home() {
           {/* Animated Mobile Menu */}
           {mobileMenuOpen && (
             <div
-              className={`md:hidden pb-4 overflow-hidden transition-all duration-500 ${
-                mobileMenuOpen ? 'animate-slide-down' : 'animate-slide-up'
-              }`}
+              className={`md:hidden pb-4 overflow-hidden transition-all duration-500 ${mobileMenuOpen ? 'animate-slide-down' : 'animate-slide-up'
+                }`}
             >
               <div className="flex flex-col space-y-1">
                 {navItems.map((item, index) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative px-4 py-3 rounded-lg text-left text-sm font-medium transition-all duration-300 overflow-hidden hover:scale-105 ${
-                      activeSection === item.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
-                    } animate-fade-in-right`}
+                    className={`relative px-4 py-3 rounded-lg text-left text-sm font-medium transition-all duration-300 overflow-hidden hover:scale-105 ${activeSection === item.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
+                      } animate-fade-in-right`}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {item.label}
@@ -298,108 +269,105 @@ export default function Home() {
       <main className="flex-1 pt-16 md:pt-20">
         {/* Hero Section with Parallax and Floating Elements */}
         <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden">
-          {/* Animated Background Image */}
-          <div
-            ref={heroParallax.ref}
-            className="absolute inset-0 z-0 transition-transform duration-100 ease-out"
-            style={{ transform: heroParallax.isVisible ? `translateY(${window.scrollY * 0.5}px)` : 'translateY(0)' }}
-          >
-            <img
-              src="/images/hero-bg.png"
-              alt="Ritu Diagnostic Center"
-              className="w-full h-full object-cover animate-fade-in duration-2000"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/50 animate-fade-in duration-1000" />
-          </div>
+
 
           {/* Floating Animated Blobs */}
           <div className="absolute top-20 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-morph opacity-50" />
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-morph opacity-30 delay-1000" />
 
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-            <div className="max-w-3xl">
-              {/* Animated Badge */}
-              <Badge
-                ref={heroBadge.ref}
-                className={`mb-4 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                  heroBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-              >
-                <span className="inline-block animate-pulse">●</span> Trusted Healthcare Partner
-              </Badge>
-
-              {/* Animated Title with Typewriter Effect */}
-              <h1
-                ref={heroTitle.ref}
-                className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight ${
-                  heroTitle.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                }`}
-              >
-                <span className="text-primary">{heroTypewriter}</span>
-              </h1>
-
-              {/* Animated Description */}
-              <p
-                ref={heroDescription.ref}
-                className={`text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed ${
-                  heroDescription.isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'
-                }`}
-              >
-                Experience world-class diagnostic services with cutting-edge technology and compassionate care. Your health is our priority at Ritu Diagnostic.
-              </p>
-
-              {/* Animated Buttons */}
-              <div
-                ref={heroButtons.ref}
-                className={`flex flex-col sm:flex-row gap-4 ${
-                  heroButtons.isVisible ? 'animate-fade-in-up delay-500' : 'opacity-0'
-                }`}
-              >
-                <Button
-                  size="lg"
-                  onClick={() => scrollToSection('contact')}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:animate-pulse-glow group"
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="max-w-3xl lg:max-w-none">
+                {/* Animated Badge */}
+                <Badge
+                  ref={heroBadge.ref}
+                  className={`mb-4 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 transition-all duration-300 hover:scale-110 hover:shadow-lg ${heroBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                    }`}
                 >
-                  Book Appointment
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => scrollToSection('services')}
-                  className="text-base px-8 py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary group"
+                  <span className="inline-block animate-pulse">●</span> Trusted Healthcare Partner
+                </Badge>
+
+                {/* Animated Title with Typewriter Effect */}
+                <h1
+                  ref={heroTitle.ref}
+                  className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight ${heroTitle.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                    }`}
                 >
-                  Explore Services
-                  <ArrowRight className="ml-2 w-5 h-0 group-hover:w-5 group-hover:h-5 transition-all duration-300" />
-                </Button>
+                  <span className="text-primary">{heroTypewriter}</span>
+                </h1>
+
+                {/* Animated Description */}
+                <p
+                  ref={heroDescription.ref}
+                  className={`text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed ${heroDescription.isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'
+                    }`}
+                >
+                  Experience world-class diagnostic services with cutting-edge technology and compassionate care. Your health is our priority at Ritu Diagnostic.
+                </p>
+
+                {/* Animated Buttons */}
+                <div
+                  ref={heroButtons.ref}
+                  className={`flex flex-col sm:flex-row gap-4 ${heroButtons.isVisible ? 'animate-fade-in-up delay-500' : 'opacity-0'
+                    }`}
+                >
+                  <Button
+                    size="lg"
+                    onClick={() => scrollToSection('contact')}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:animate-pulse-glow group"
+                  >
+                    Book Appointment
+                    <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => scrollToSection('services')}
+                    className="text-base px-8 py-6 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary group"
+                  >
+                    Explore Services
+                    <ArrowRight className="ml-2 w-5 h-0 group-hover:w-5 group-hover:h-5 transition-all duration-300" />
+                  </Button>
+                </div>
+
+                {/* Animated Stats with Counters */}
+                <div
+                  ref={heroStats.ref}
+                  className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-12 border-t border-border ${heroStats.isVisible ? 'animate-fade-in-up delay-700' : 'opacity-0'
+                    }`}
+                >
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="text-center md:text-left group transition-all duration-300 hover:scale-110 hover:-translate-y-2 cursor-default"
+                    >
+                      <div className="flex items-center justify-center md:justify-start gap-2 text-primary mb-2 group-hover:animate-heartbeat">
+                        {stat.icon}
+                      </div>
+                      <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 transition-all duration-300 group-hover:text-primary">
+                        {index === 0 && patientsCount.toLocaleString()}
+                        {index === 1 && `${yearsCount}+`}
+                        {index === 2 && `${expertsCount}+`}
+                        {index === 3 && testsCount.toLocaleString()}
+                      </div>
+                      <div className="text-sm text-muted-foreground group-hover:transition-all group-hover:duration-300 group-hover:text-foreground">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Animated Stats with Counters */}
-              <div
-                ref={heroStats.ref}
-                className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-12 border-t border-border ${
-                  heroStats.isVisible ? 'animate-fade-in-up delay-700' : 'opacity-0'
-                }`}
-              >
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="text-center md:text-left group transition-all duration-300 hover:scale-110 hover:-translate-y-2 cursor-default"
-                  >
-                    <div className="flex items-center justify-center md:justify-start gap-2 text-primary mb-2 group-hover:animate-heartbeat">
-                      {stat.icon}
-                    </div>
-                    <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 transition-all duration-300 group-hover:text-primary">
-                      {index === 0 && patientsCount.toLocaleString()}
-                      {index === 1 && `${yearsCount}+`}
-                      {index === 2 && `${expertsCount}+`}
-                      {index === 3 && testsCount.toLocaleString()}
-                    </div>
-                    <div className="text-sm text-muted-foreground group-hover:transition-all group-hover:duration-300 group-hover:text-foreground">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+              {/* Hero Image */}
+              <div className="hidden lg:block relative animate-fade-in-right duration-1000">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+                  <img
+                    src="/images/bg.jpg?v=8"
+                    alt="Ritu Diagnostic Center"
+                    className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
               </div>
             </div>
           </div>
@@ -411,16 +379,15 @@ export default function Home() {
         </section>
 
         {/* About Us Section with Scroll Animations */}
-        <section id="about" className="py-20 md:py-28 bg-card overflow-hidden">
+        <section id="about" className="py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 {/* Animated Badge */}
                 <Badge
                   ref={aboutBadge.ref}
-                  className={`mb-4 transition-all duration-300 hover:scale-110 ${
-                    aboutBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                  }`}
+                  className={`mb-4 transition-all duration-300 hover:scale-110 ${aboutBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                    }`}
                   variant="secondary"
                 >
                   About Us
@@ -429,9 +396,8 @@ export default function Home() {
                 {/* Animated Title */}
                 <h2
                   ref={aboutTitle.ref}
-                  className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${
-                    aboutTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
-                  }`}
+                  className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${aboutTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
+                    }`}
                 >
                   Your Trusted{' '}
                   <span className="text-primary animate-pulse">Diagnostic</span> Partner
@@ -440,16 +406,14 @@ export default function Home() {
                 {/* Animated Description */}
                 <p
                   ref={aboutDescription.ref}
-                  className={`text-lg text-muted-foreground mb-6 leading-relaxed ${
-                    aboutDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                  }`}
+                  className={`text-lg text-muted-foreground mb-6 leading-relaxed ${aboutDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                    }`}
                 >
                   At Ritu Diagnostic, we combine advanced medical technology with compassionate care to deliver accurate and timely diagnostic services. With over 15 years of experience, we have become the preferred choice for healthcare diagnostics.
                 </p>
                 <p
-                  className={`text-muted-foreground mb-8 leading-relaxed ${
-                    aboutDescription.isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'
-                  }`}
+                  className={`text-muted-foreground mb-8 leading-relaxed ${aboutDescription.isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'
+                    }`}
                 >
                   Our team of certified professionals, state-of-the-art equipment, and commitment to quality ensure that you receive the best diagnostic care possible. We understand the importance of accurate results in your healthcare journey.
                 </p>
@@ -457,9 +421,8 @@ export default function Home() {
                 {/* Animated Feature Cards */}
                 <div
                   ref={aboutFeatures.ref}
-                  className={`space-y-4 ${
-                    aboutFeatures.isVisible ? 'animate-fade-in-up delay-400' : 'opacity-0'
-                  }`}
+                  className={`space-y-4 ${aboutFeatures.isVisible ? 'animate-fade-in-up delay-400' : 'opacity-0'
+                    }`}
                 >
                   {[
                     { icon: Award, title: 'NABL Accredited', desc: 'Certified by National Accreditation Board' },
@@ -487,9 +450,8 @@ export default function Home() {
               {/* Animated Image */}
               <div
                 ref={aboutImage.ref}
-                className={`relative transition-all duration-1000 ${
-                  aboutImage.isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'
-                }`}
+                className={`relative transition-all duration-1000 ${aboutImage.isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'
+                  }`}
               >
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                   <img
@@ -509,15 +471,14 @@ export default function Home() {
         </section>
 
         {/* Our Services Section with Staggered Animations */}
-        <section id="services" className="py-20 md:py-28 bg-background overflow-hidden">
+        <section id="services" className="py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               {/* Animated Badge */}
               <Badge
                 ref={servicesBadge.ref}
-                className={`mb-4 transition-all duration-300 hover:scale-110 hover:animate-bounce ${
-                  servicesBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
+                className={`mb-4 transition-all duration-300 hover:scale-110 hover:animate-bounce ${servicesBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
                 variant="secondary"
               >
                 Our Services
@@ -526,9 +487,8 @@ export default function Home() {
               {/* Animated Title */}
               <h2
                 ref={servicesTitle.ref}
-                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${
-                  servicesTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
-                }`}
+                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${servicesTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
+                  }`}
               >
                 Comprehensive{' '}
                 <span className="text-primary animate-pulse">Diagnostic</span> Services
@@ -537,9 +497,8 @@ export default function Home() {
               {/* Animated Description */}
               <p
                 ref={servicesDescription.ref}
-                className={`text-lg text-muted-foreground ${
-                  servicesDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                }`}
+                className={`text-lg text-muted-foreground ${servicesDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                  }`}
               >
                 We offer a wide range of diagnostic services using the latest technology and methodologies to ensure accurate results.
               </p>
@@ -550,9 +509,8 @@ export default function Home() {
               {services.map((service, index) => (
                 <Card
                   key={index}
-                  className={`group hover:shadow-xl transition-all duration-500 border-border bg-card overflow-hidden animate-on-scroll ${
-                    hoveredCard === index ? 'scale-105 shadow-2xl' : ''
-                  }`}
+                  className={`group hover:shadow-xl transition-all duration-500 border-border bg-card overflow-hidden animate-on-scroll ${hoveredCard === index ? 'scale-105 shadow-2xl' : ''
+                    }`}
                   style={{
                     transitionDelay: `${serviceCardDelays[index]}ms`,
                     animation: `fade-in-up 0.8s ease-out ${serviceCardDelays[index]}ms forwards`
@@ -563,9 +521,8 @@ export default function Home() {
                   <div className="grid md:grid-cols-2">
                     <div className="p-6 md:p-8">
                       <div
-                        className={`w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 transition-all duration-500 ${
-                          hoveredCard === index ? 'scale-110 rotate-6 bg-primary text-primary-foreground' : 'group-hover:scale-110'
-                        }`}
+                        className={`w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 transition-all duration-500 ${hoveredCard === index ? 'scale-110 rotate-6 bg-primary text-primary-foreground' : 'group-hover:scale-110'
+                          }`}
                       >
                         {service.icon}
                       </div>
@@ -582,9 +539,8 @@ export default function Home() {
                             className="flex items-center text-sm text-foreground/70 transition-all duration-300 hover:text-foreground hover:translate-x-2"
                           >
                             <ChevronRight
-                              className={`w-4 h-4 text-primary mr-2 flex-shrink-0 transition-transform duration-300 ${
-                                hoveredCard === index ? 'translate-x-2' : ''
-                              }`}
+                              className={`w-4 h-4 text-primary mr-2 flex-shrink-0 transition-transform duration-300 ${hoveredCard === index ? 'translate-x-2' : ''
+                                }`}
                             />
                             {feature}
                           </li>
@@ -595,9 +551,8 @@ export default function Home() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
-                          hoveredCard === index ? 'scale-125 rotate-2' : 'group-hover:scale-105'
-                        }`}
+                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${hoveredCard === index ? 'scale-125 rotate-2' : 'group-hover:scale-105'
+                          }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
@@ -609,15 +564,14 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section with Scroll Animations */}
-        <section id="testimonials" className="py-20 md:py-28 bg-card overflow-hidden">
+        <section id="testimonials" className="py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               {/* Animated Badge */}
               <Badge
                 ref={testimonialsBadge.ref}
-                className={`mb-4 transition-all duration-300 hover:scale-110 ${
-                  testimonialsBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
+                className={`mb-4 transition-all duration-300 hover:scale-110 ${testimonialsBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
                 variant="secondary"
               >
                 Testimonials
@@ -626,9 +580,8 @@ export default function Home() {
               {/* Animated Title */}
               <h2
                 ref={testimonialsTitle.ref}
-                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${
-                  testimonialsTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
-                }`}
+                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${testimonialsTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
+                  }`}
               >
                 What Our{' '}
                 <span className="text-primary animate-pulse">Patients</span> Say
@@ -637,9 +590,8 @@ export default function Home() {
               {/* Animated Description */}
               <p
                 ref={testimonialsDescription.ref}
-                className={`text-lg text-muted-foreground ${
-                  testimonialsDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                }`}
+                className={`text-lg text-muted-foreground ${testimonialsDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                  }`}
               >
                 Don't just take our word for it. Here's what our valued patients have to say about their experience.
               </p>
@@ -691,15 +643,14 @@ export default function Home() {
         </section>
 
         {/* Blog Section with Hover Animations */}
-        <section id="blog" className="py-20 md:py-28 bg-background overflow-hidden">
+        <section id="blog" className="py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               {/* Animated Badge */}
               <Badge
                 ref={blogBadge.ref}
-                className={`mb-4 transition-all duration-300 hover:scale-110 hover:animate-bounce ${
-                  blogBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
+                className={`mb-4 transition-all duration-300 hover:scale-110 hover:animate-bounce ${blogBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
                 variant="secondary"
               >
                 Blog
@@ -708,9 +659,8 @@ export default function Home() {
               {/* Animated Title */}
               <h2
                 ref={blogTitle.ref}
-                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${
-                  blogTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
-                }`}
+                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${blogTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
+                  }`}
               >
                 Latest{' '}
                 <span className="text-primary animate-pulse">Health</span> Insights
@@ -719,9 +669,8 @@ export default function Home() {
               {/* Animated Description */}
               <p
                 ref={blogDescription.ref}
-                className={`text-lg text-muted-foreground ${
-                  blogDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                }`}
+                className={`text-lg text-muted-foreground ${blogDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                  }`}
               >
                 Stay informed with our latest health tips, educational articles, and medical insights.
               </p>
@@ -769,10 +718,12 @@ export default function Home() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="ghost" className="w-full group-hover:bg-primary/10 transition-all duration-300 hover:scale-105 group">
-                      Read More
-                      <ChevronRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
-                    </Button>
+                    <Link href={`/blog/${post.id}`} className="w-full">
+                      <Button variant="ghost" className="w-full group-hover:bg-primary/10 transition-all duration-300 hover:scale-105 group">
+                        Read More
+                        <ChevronRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
+                      </Button>
+                    </Link>
                   </CardFooter>
                 </Card>
               ))}
@@ -781,15 +732,14 @@ export default function Home() {
         </section>
 
         {/* Contact Section with Form Animations */}
-        <section id="contact" className="py-20 md:py-28 bg-card overflow-hidden">
+        <section id="contact" className="py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               {/* Animated Badge */}
               <Badge
                 ref={contactBadge.ref}
-                className={`mb-4 transition-all duration-300 hover:scale-110 ${
-                  contactBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
+                className={`mb-4 transition-all duration-300 hover:scale-110 ${contactBadge.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
                 variant="secondary"
               >
                 Contact Us
@@ -798,9 +748,8 @@ export default function Home() {
               {/* Animated Title */}
               <h2
                 ref={contactTitle.ref}
-                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${
-                  contactTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
-                }`}
+                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 ${contactTitle.isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'
+                  }`}
               >
                 Get in{' '}
                 <span className="text-primary animate-pulse">Touch</span>
@@ -809,9 +758,8 @@ export default function Home() {
               {/* Animated Description */}
               <p
                 ref={contactDescription.ref}
-                className={`text-lg text-muted-foreground ${
-                  contactDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
-                }`}
+                className={`text-lg text-muted-foreground ${contactDescription.isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'
+                  }`}
               >
                 Have questions or want to book an appointment? We're here to help you.
               </p>
@@ -964,9 +912,8 @@ export default function Home() {
       {/* Animated Footer */}
       <footer
         ref={footerAnimation.ref}
-        className={`bg-card border-t border-border transition-all duration-500 ${
-          footerAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0'
-        }`}
+        className={`bg-card border-t border-border transition-all duration-500 ${footerAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0'
+          }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
